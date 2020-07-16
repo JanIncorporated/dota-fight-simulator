@@ -20,7 +20,8 @@
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.20.3"
+    "eslint-plugin-react": "^7.20.3",
+    "husky": "^4.2.5"
   },
   "scripts": {
     "dev": "webpack-dev-server",
@@ -38,5 +39,10 @@
   "bugs": {
     "url": "https://github.com/JanIncorporated/dota-fight-simulator/issues"
   },
-  "homepage": "https://github.com/JanIncorporated/dota-fight-simulator#readme"
+  "homepage": "https://github.com/JanIncorporated/dota-fight-simulator#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  }
 }
