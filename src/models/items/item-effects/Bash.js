@@ -1,13 +1,15 @@
-import { root } from "Utils/constants";
+import { root } from 'utils/constants';
 
-export const Bash = function() {
-  this.time = 150,
-  this.chance = 0.15,
-  this.totalCooldown = 230,
-  this.damage = 100,
-  this.cooldown = 0;
+export class Bash {
+  constructor() {
+    this.time = 150;
+    this.chance = 0.15;
+    this.totalCooldown = 230;
+    this.damage = 100;
+    this.cooldown = 0;
+  }
 
-  this.effect = (target, user) => {
+  effect(target, user) {
     if (this.cooldown > 0) {
       root.innerHTML += `<p>${user.name} basher cooldown: ${this.cooldown}</p>`;
     }

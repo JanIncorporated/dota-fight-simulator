@@ -13,7 +13,7 @@ module.exports = {
       Root: path.resolve(__dirname, 'src'),
       Models: path.resolve(__dirname, 'src/models'),
       Utils: path.resolve(__dirname, 'src/utils'),
-    }
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -26,13 +26,13 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
-      }
-    ]
+          loader: 'babel-loader',
+        },
+      },
+    ],
   },
   devServer: {
     open: true,
     port: 8080,
   },
-}
+};

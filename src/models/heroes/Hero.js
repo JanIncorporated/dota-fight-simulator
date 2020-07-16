@@ -1,16 +1,26 @@
-import { 
+import {
   hpForStrength,
   STRENGTH,
   AGILITY,
+  INTELLIGENCE,
   armorForAgility,
   asForAgility,
   root,
-} from 'Utils/constants';
-import { INTELLIGENCE } from '../../utils/constants';
-
+} from 'utils/constants';
 
 export class Hero {
-  constructor({ name, baseAttr, hp = 200, stats, baseDamage, baseArmor, asOptions, level, statsPerLevel, items = [] }) {
+  constructor({
+    name,
+    baseAttr,
+    hp = 200,
+    stats,
+    baseDamage,
+    baseArmor,
+    asOptions,
+    level,
+    statsPerLevel,
+    items = [],
+  }) {
     this.name = name;
     this.baseAttr = baseAttr;
     this.hp = hp;
@@ -41,17 +51,18 @@ export class Hero {
     this.hp += Math.floor(this.stats.s) * hpForStrength;
     this.incAs += Math.floor(this.stats.a) * asForAgility;
     this.armor += this.stats.a * armorForAgility;
-    //console.log(stats.a);
 
-    switch(this.baseAttr) {
+    switch (this.baseAttr) {
       case STRENGTH:
         this.damage += Math.floor(this.stats.s);
         break;
       case AGILITY:
-        this.damage +=Math.floor( this.stats.a);
+        this.damage += Math.floor(this.stats.a);
         break;
       case INTELLIGENCE:
         this.damage += Math.floor(this.stats.i);
+        break;
+      default:
         break;
     }
   }
@@ -59,8 +70,7 @@ export class Hero {
   initAs(asOptions) {
     const { baseAs, initAs } = asOptions;
 
-
-    this.as = Math.round(baseAs * 100 / ((initAs + this.incAs) * 0.01));
+    this.as = Math.round((baseAs * 100) / ((initAs + this.incAs) * 0.01));
     this.timeBeforeAttack = this.as;
   }
 
@@ -80,7 +90,7 @@ export class Hero {
       if (effect) {
         effect.effect(target, this);
       }
-    })
+    });
     target.hp = Math.round(target.hp - this.damage * (1 - target.getResist()));
   }
 
@@ -88,7 +98,7 @@ export class Hero {
     this.items.forEach((item) => {
       if (item) {
         if (item.strength) {
-          this.stats.s +=item.strength;
+          this.stats.s += item.strength;
           // if (this.baseAttr === STRENGTH) {
           //   this.damage += item.strength;
           // }
@@ -112,19 +122,19 @@ export class Hero {
           this.armor += item.armor;
         }
       }
-    })
+    });
   }
 
   reduceTimeBeforeAttack() {
-    this.timeBeforeAttack--;
+    this.timeBeforeAttack -= 1;
 
     this.items.forEach(({ effect }) => {
       if (effect) {
         if (effect.cooldown > 0) {
-          effect.cooldown--;
+          effect.cooldown -= 1;
         }
       }
-    })
+    });
   }
 
   log() {
