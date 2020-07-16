@@ -1,3 +1,4 @@
+import logger from 'loglevel';
 import {
   hpForStrength,
   STRENGTH,
@@ -5,8 +6,9 @@ import {
   INTELLIGENCE,
   armorForAgility,
   asForAgility,
-  root,
-} from 'utils/constants';
+} from 'Utils/constants';
+
+logger.setLevel('info');
 
 export class Hero {
   constructor({
@@ -83,7 +85,7 @@ export class Hero {
   }
 
   attack(target) {
-    root.innerHTML += `<i>${this.name} attacks ${target.name}</i>`;
+    logger.info(`${this.name} attacks ${target.name}`);
     this.timeBeforeAttack = this.as;
 
     this.items.forEach(({ effect }) => {
@@ -138,6 +140,6 @@ export class Hero {
   }
 
   log() {
-    root.innerHTML += `<p><b>${this.name}</b> (${this.damage}): ${this.hp}`;
+    logger.info(`${this.name} (${this.damage}): ${this.hp}`);
   }
 }

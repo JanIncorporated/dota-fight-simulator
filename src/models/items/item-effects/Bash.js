@@ -1,4 +1,6 @@
-import { root } from 'utils/constants';
+import logger from 'loglevel';
+
+logger.setLevel('info');
 
 export class Bash {
   constructor() {
@@ -11,13 +13,13 @@ export class Bash {
 
   effect(target, user) {
     if (this.cooldown > 0) {
-      root.innerHTML += `<p>${user.name} basher cooldown: ${this.cooldown}</p>`;
+      logger.info(`${user.name} basher cooldown: ${this.cooldown}`);
     }
     if (Math.random() < this.chance && this.cooldown === 0) {
       target.hp -= this.damage;
       target.timeBeforeAttack = target.as + this.time;
       this.cooldown = this.totalCooldown;
-      root.innerHTML += `<p>${target.name} bashed for ${this.time}ms</p>`;
+      logger.info(`${target.name} bashed for ${this.time}ms`);
     }
   }
 }

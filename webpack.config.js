@@ -10,9 +10,9 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx'],
     alias: {
-      Root: path.resolve(__dirname, 'src'),
-      Models: path.resolve(__dirname, 'src/models'),
-      Utils: path.resolve(__dirname, 'src/utils'),
+      Models: path.resolve(__dirname, 'src', 'models'),
+      Utils: path.resolve(__dirname, 'src', 'utils'),
+      App: path.join(__dirname, 'src'),
     },
   },
   plugins: [

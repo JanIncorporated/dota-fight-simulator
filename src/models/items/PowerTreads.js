@@ -1,4 +1,4 @@
-import { STRENGTH, AGILITY, INTELLIGENCE } from 'utils/constants';
+import { STRENGTH, AGILITY, INTELLIGENCE } from 'Utils/constants';
 
 export class PowerTreads {
   constructor(mode) {

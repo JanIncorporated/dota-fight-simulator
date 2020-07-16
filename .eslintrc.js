@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   env: {
     browser: true,
@@ -27,9 +29,10 @@ module.exports = {
   },
   settings: {
     'import/resolver': {
-      node: {
-        moduleDirectory: ['node_modules', 'src/'],
-      },
+      alias: [
+        ['Utils', path.resolve(__dirname, 'src/utils/')],
+        ['Models', path.resolve(__dirname, 'src/models/')],
+      ],
     },
   },
 };

@@ -1,28 +1,30 @@
-const { Hero } = require('./models/heroes');
-const { WraithBand } = require('./models/items');
-const { AGILITY, root } = require('./utils/constants');
+import logger from 'loglevel';
+import { Hero } from 'Models/heroes';
+import { WraithBand } from 'Models/items';
+import { AGILITY } from 'Utils/constants';
+
+logger.setLevel('info');
 
 const logHeroes = (...heroes) => {
   heroes.forEach((hero) => hero.log());
 };
 
 const logFignt = (step, time, ...heroes) => {
-  root.innerHTML += `<h3>Step ${step}. Time ${time}ms</h3>`;
+  logger.info(`Step ${step}. Time ${time}ms`);
   logHeroes(...heroes);
-  root.innerHTML += '<br><hr><br>';
 };
 
 const checkEnd = (hero1, hero2) => {
   if (hero1.hp <= 0 && hero2.hp <= 0) {
-    root.innerHTML += '<h1><center>ничья</center></h1>';
+    logger.info('ничья');
     return true;
   }
   if (hero1.hp <= 0) {
-    root.innerHTML += `<h1><center>${hero2.name} победил</center></h1>`;
+    logger.info(`${hero2.name} победил`);
     return true;
   }
   if (hero2.hp <= 0) {
-    root.innerHTML += `<h1><center>${hero1.name} победил</center></h1>`;
+    logger.info(`${hero1.name} победил`);
     return true;
   }
   return false;
@@ -53,7 +55,7 @@ const fight = (hero1, hero2) => {
   }
 };
 
-const main = () => {
+export const main = () => {
   const sniper = new Hero({
     name: 'Sniper',
     baseAttr: AGILITY,
@@ -108,5 +110,3 @@ const main = () => {
 
   fight(sniper, bs);
 };
-
-main();
