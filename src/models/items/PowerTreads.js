@@ -1,19 +1,23 @@
-import { STRENGTH, AGILITY } from "../../utils/constants";
+import { STRENGTH, AGILITY, INTELLIGENCE } from 'Utils/constants';
 
-export const PowerTreads = function(mode) {
+export class PowerTreads {
+  constructor(mode) {
     this.as = 25;
-    switch (mode)
-    {
-        case STRENGTH:
-            this.strength = 10;
+    switch (mode) {
+      case STRENGTH:
+        this.strength = 10;
         break;
 
-        case AGILITY:
-            this.agility = 10;
+      case AGILITY:
+        this.agility = 10;
         break;
 
-        case INTELLIGENCE:
-            this.intelligence = 10;
+      case INTELLIGENCE:
+        this.intelligence = 10;
+        break;
+
+      default:
         break;
     }
+  }
 }
