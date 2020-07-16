@@ -32,32 +32,9 @@ export class Hero {
   }
 
   initLevels() {
-    //agilityInc = this.statsPerLevel.a * (this.level - 1);
-
     this.stats.s += this.statsPerLevel.s * (this.level - 1);
     this.stats.a += this.statsPerLevel.a * (this.level - 1);
     this.stats.i += this.statsPerLevel.a * (this.level - 1);
-
-    //this.armor += (agilityInc - Math.floor(agilityInc)) * armorForAgility;
-
-
-    // this.hp += Math.floor(statsPerLevel.s * level) * hpForStrength;
-    // this.incAs += Math.floor(statsPerLevel.a * level) * asForAgility;
-    // this.armor += statsPerLevel.a * level * armorForAgility;
-
-    
-    // switch(this.baseAttr) {
-    //   case STRENGTH:
-    //     this.damage += Math.floor(statsPerLevel.s * level);
-    //     break;
-    //   case AGILITY:
-    //     this.damage += Math.floor(statsPerLevel.a * level);
-    //     break;
-    //   case INTELLIGENCE:
-    //     this.damage += Math.floor(statsPerLevel.i * level);
-    //     break;
-    // }
-    // console.log(Math.floor(statsPerLevel.a * level));
   }
 
   initStats() {
