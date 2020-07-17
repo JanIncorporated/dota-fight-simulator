@@ -56,11 +56,12 @@ const fight = (hero1, hero2) => {
 };
 
 export const main = () => {
+
   const sniper = new Hero({
     name: 'Sniper',
     baseAttr: AGILITY,
-    baseDamage: 18,
-    baseArmor: -1,
+    initialDamage: 18,
+    initialArmor: -1,
     stats: {
       s: 19,
       a: 21,
@@ -69,7 +70,7 @@ export const main = () => {
     items: [
       // new Basher(),
       // new PowerTreads(AGILITY),
-      new WraithBand(),
+      // new WraithBand(),
       // new WraithBand(),
       // new WraithBand(),
       // new WraithBand(),
@@ -84,13 +85,13 @@ export const main = () => {
       baseAs: 1.7,
       initAs: 100,
     },
-  });
+  })
 
   const bs = new Hero({
     name: 'Bloodseeker',
     baseAttr: AGILITY,
-    baseDamage: 36,
-    baseArmor: 2,
+    initialDamage: 36,
+    initialArmor: 2,
     stats: {
       s: 24,
       a: 22,
@@ -109,4 +110,5 @@ export const main = () => {
   });
 
   fight(sniper, bs);
+  logger.info(sniper);
 };
