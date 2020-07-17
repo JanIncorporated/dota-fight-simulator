@@ -16,8 +16,8 @@ export class Hero {
     baseAttr,
     hp = 200,
     stats,
-    baseDamage,
-    baseArmor,
+    initialDamage,
+    initialArmor,
     asOptions,
     level,
     statsPerLevel,
@@ -27,20 +27,34 @@ export class Hero {
     this.baseAttr = baseAttr;
     this.hp = hp;
     this.stats = stats;
-    this.damage = baseDamage;
-    this.armor = baseArmor;
     this.asOptions = asOptions;
     this.level = level;
     this.statsPerLevel = statsPerLevel;
+
+    this.baseDamage = 0;
+    this.additionalDamage = 0;
+
+    this.baseArmor = 0;
+    this.additionalArmor = 0;
 
     this.effects = [];
     this.items = items;
     this.incAs = 0;
 
-    this.initItems();
     this.initLevels();
+    this.initItems();
     this.initStats();
     this.initAs(asOptions);
+    this.initDamage(initialDamage);
+    this.initArmor(initialArmor);
+  }
+
+  initDamage(initDamage) {
+    this.damage = initDamage + this.baseDamage + this.additionalDamage;
+  }
+
+  initArmor(initArmor) {
+    this.armor = initArmor + this.baseArmor + this.additionalArmor;
   }
 
   initLevels() {
@@ -52,17 +66,17 @@ export class Hero {
   initStats() {
     this.hp += Math.floor(this.stats.s) * hpForStrength;
     this.incAs += Math.floor(this.stats.a) * asForAgility;
-    this.armor += this.stats.a * armorForAgility;
+    this.baseArmor += parseFloat((this.stats.a * armorForAgility).toFixed(1));
 
     switch (this.baseAttr) {
       case STRENGTH:
-        this.damage += Math.floor(this.stats.s);
+        this.baseDamage += Math.floor(this.stats.s);
         break;
       case AGILITY:
-        this.damage += Math.floor(this.stats.a);
+        this.baseDamage += Math.floor(this.stats.a);
         break;
       case INTELLIGENCE:
-        this.damage += Math.floor(this.stats.i);
+        this.baseDamage += Math.floor(this.stats.i);
         break;
       default:
         break;
@@ -101,27 +115,18 @@ export class Hero {
       if (item) {
         if (item.strength) {
           this.stats.s += item.strength;
-          // if (this.baseAttr === STRENGTH) {
-          //   this.damage += item.strength;
-          // }
-          // this.hp += item.strength * hpForStrength;
         }
         if (item.agility) {
           this.stats.a += item.agility;
-          // if (this.baseAttr === AGILITY) {
-          //   this.damage += item.agility;
-          // }
-          // this.as += item.agility * asForAgility;
-          // this.armor += item.agility * armorForAgility;
         }
         if (item.damage) {
-          this.damage += item.damage;
+          this.additionalDamage += item.damage;
         }
         if (item.as) {
           this.incAs += item.as;
         }
         if (item.armor) {
-          this.armor += item.armor;
+          this.additionalArmor += item.armor;
         }
       }
     });
