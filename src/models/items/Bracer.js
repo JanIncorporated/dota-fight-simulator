@@ -3,5 +3,6 @@ export class Bracer {
     this.strength = 5;
     this.agility = 2;
     this.intelligence = 2;
+    this.damage = 3;
   }
 }

@@ -49,18 +49,40 @@ export class Hero {
     this.initArmor(initialArmor);
   }
 
+  initLevels() {
+    this.stats.s += this.statsPerLevel.s * (this.level - 1);
+    this.stats.a += this.statsPerLevel.a * (this.level - 1);
+    this.stats.i += this.statsPerLevel.a * (this.level - 1);
+  }
+
+  initItems() {
+    this.items.forEach((item) => {
+      if (item) {
+        if (item.strength) {
+          this.stats.s += item.strength;
+        }
+        if (item.agility) {
+          this.stats.a += item.agility;
+        }
+        if (item.damage) {
+          this.additionalDamage += item.damage;
+        }
+        if (item.as) {
+          this.incAs += item.as;
+        }
+        if (item.armor) {
+          this.additionalArmor += item.armor;
+        }
+      }
+    });
+  }
+
   initDamage(initDamage) {
     this.damage = initDamage + this.baseDamage + this.additionalDamage;
   }
 
   initArmor(initArmor) {
     this.armor = initArmor + this.baseArmor + this.additionalArmor;
-  }
-
-  initLevels() {
-    this.stats.s += this.statsPerLevel.s * (this.level - 1);
-    this.stats.a += this.statsPerLevel.a * (this.level - 1);
-    this.stats.i += this.statsPerLevel.a * (this.level - 1);
   }
 
   initStats() {
@@ -90,13 +112,9 @@ export class Hero {
     this.timeBeforeAttack = this.as;
   }
 
-  getAttackSpeed() {
-    return this.attackSpeed + this.attackDeley;
-  }
-
-  getResist() {
-    return (this.armor * 0.06) / (1 + this.armor * 0.06);
-  }
+  // getAttackSpeed() {
+  //   return this.attackSpeed + this.attackDeley;
+  // }
 
   attack(target) {
     logger.info(`${this.name} attacks ${target.name}`);
@@ -110,27 +128,11 @@ export class Hero {
     target.hp = Math.round(target.hp - this.damage * (1 - target.getResist()));
   }
 
-  initItems() {
-    this.items.forEach((item) => {
-      if (item) {
-        if (item.strength) {
-          this.stats.s += item.strength;
-        }
-        if (item.agility) {
-          this.stats.a += item.agility;
-        }
-        if (item.damage) {
-          this.additionalDamage += item.damage;
-        }
-        if (item.as) {
-          this.incAs += item.as;
-        }
-        if (item.armor) {
-          this.additionalArmor += item.armor;
-        }
-      }
-    });
+  getResist() {
+    return (this.armor * 0.06) / (1 + this.armor * 0.06);
   }
+
+  
 
   reduceTimeBeforeAttack() {
     this.timeBeforeAttack -= 1;
