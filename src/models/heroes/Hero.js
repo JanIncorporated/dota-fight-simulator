@@ -1,11 +1,13 @@
 import logger from 'loglevel';
 import {
-  hpForStrength,
   STRENGTH,
   AGILITY,
   INTELLIGENCE,
-  armorForAgility,
+  RANGE,
+  MELEE,
+  hpForStrength,
   asForAgility,
+  armorForAgility,
 } from 'Utils/constants';
 
 logger.setLevel('info');
@@ -14,6 +16,8 @@ export class Hero {
   constructor({
     name,
     baseAttr,
+    range,
+    rangeValue,
     hp = 200,
     stats,
     initialDamage,
@@ -21,21 +25,28 @@ export class Hero {
     asOptions,
     level,
     statsPerLevel,
+
     items = [],
   }) {
     this.name = name;
     this.baseAttr = baseAttr;
+
+    this.range = range;
+    this.rangeValue = rangeValue;
+
     this.hp = hp;
     this.stats = stats;
-    this.asOptions = asOptions;
-    this.level = level;
-    this.statsPerLevel = statsPerLevel;
 
     this.baseDamage = 0;
     this.additionalDamage = 0;
 
     this.baseArmor = 0;
     this.additionalArmor = 0;
+
+    this.asOptions = asOptions;
+    this.level = level;
+    this.statsPerLevel = statsPerLevel;
+
 
     this.effects = [];
     this.items = items;

@@ -3,6 +3,7 @@ import { Hero } from 'Models/heroes';
 import { WraithBand } from 'Models/items';
 import { Bracer } from 'Models/items';
 import { AGILITY } from 'Utils/constants';
+import { RANGE, MELEE } from './utils/constants';
 //import { Sniper } from './heroes/index';
 
 logger.setLevel('info');
@@ -62,6 +63,8 @@ export const main = () => {
   const sniper = new Hero({
     name: 'Sniper',
     baseAttr: AGILITY,
+    range: RANGE,
+    rangeValue: 0,
     initialDamage: 18,
     initialArmor: -1,
     stats: {
@@ -92,6 +95,8 @@ export const main = () => {
   const bs = new Hero({
     name: 'Bloodseeker',
     baseAttr: AGILITY,
+    range: MELEE,
+    rangeValue: 0,
     initialDamage: 36,
     initialArmor: 2,
     stats: {
