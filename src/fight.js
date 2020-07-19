@@ -1,7 +1,9 @@
 import logger from 'loglevel';
 import { Hero } from 'Models/heroes';
 import { WraithBand } from 'Models/items';
+import { Bracer } from 'Models/items';
 import { AGILITY } from 'Utils/constants';
+//import { Sniper } from './heroes/index';
 
 logger.setLevel('info');
 
@@ -70,7 +72,7 @@ export const main = () => {
     items: [
       // new Basher(),
       // new PowerTreads(AGILITY),
-      // new WraithBand(),
+      // new Bracer(),
       // new WraithBand(),
       // new WraithBand(),
       // new WraithBand(),
