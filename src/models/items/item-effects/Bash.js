@@ -1,11 +1,22 @@
 import logger from 'loglevel';
+import { 
+  RANGE, 
+  MELEE 
+} from 'Utils/constants';
 
 logger.setLevel('info');
 
 export class Bash {
-  constructor() {
+  constructor(range) {
     this.time = 150;
-    this.chance = 0.15;
+    switch (range) {
+      case (MELEE):
+    this.chance = 0.25;
+      break;
+      case (RANGE):
+    this.chance = 0.15
+      break;
+    }
     this.totalCooldown = 230;
     this.damage = 100;
     this.cooldown = 0;

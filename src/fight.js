@@ -2,8 +2,11 @@ import logger from 'loglevel';
 import { Hero } from 'Models/heroes';
 import { WraithBand } from 'Models/items';
 import { Bracer } from 'Models/items';
-import { AGILITY } from 'Utils/constants';
-import { RANGE, MELEE } from './utils/constants';
+import { 
+  AGILITY,
+  RANGE, 
+  MELEE 
+} from './utils/constants';
 //import { Sniper } from './heroes/index';
 
 logger.setLevel('info');
